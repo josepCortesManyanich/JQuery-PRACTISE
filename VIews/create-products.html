@@ -13,36 +13,48 @@
                 <ul>
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="/VIews/products.html">Productos</a></li>
-                    <li><a href="/VIews/create-products.html">Crea tu producto</a></li>
+                    <li><a href="/VIews/create-products.html">Crear</a></li>
                     <li><a href="/VIews/cart.html"><img src="" alt=""></a></li>
                 </ul>
             </nav>
             
         </header>
-        <div>
+        <div id="form-container">
             <h1>CREA TU PRODUCTO</h1>
 
-            <form>
-                <label for="Producto">Producto</label>
-                <select name="" id="">
-                    <option value="Proteina Isolada">Proteina Isolada</option>
-                    <option value="Creatina">Creatina</option>
-                    <option value="L-Carnitina">L-carnitina</option>
+            <form id="form">
+                <label class="label" for="Producto">Producto</label>
+                <select  class="select" >
+                    <option class="option" value="Proteina Isolada">Proteina Isolada</option>
+                    <option class="option" value="Creatina">Creatina</option>
+                    <option class="option" value="L-Carnitina">L-carnitina</option>
                 </select>
 
-                <label for="Gramaje">Gramaje</label>
-                <select name="" id="">
-                    <option value="Proteina Isolada">Proteina Isolada</option>
-                    <option value="Creatina">Creatina</option>
-                    <option value="L-Carnitina">L-carnitina</option>
+                <label class="label" for="Gramaje">Gramaje</label>
+                <select class="select" name="" >
+                    <option  class="option"value="Proteina Isolada">Proteina Isolada</option>
+                    <option class="option" value="Creatina">Creatina</option>
+                    <option  class="option"value="L-Carnitina">L-carnitina</option>
                 </select>
-            
-                <label for="Imagen">Imagen</label>
-                <input type="file">
-
-                <label for="Precio">Precio</label>
-                <input type="number" placeholder="€">
+                
+                    <label class="label"  for="Imagen">Imagen</label>
+                    <input class="input-form" type="file">
+              
+                   
+                
+                
+               
+                <div class="input-container">
+                    <label class="label"  for="Precio">Precio:</label>
+                    <input class="input-form1" type="number" placeholder="€">
+                </div>
+                
             </form>
+
+            <div class="btn-container">
+                <button class="btn-create">CREAR</button>
+            </div>
+            
 
         </div>
 
