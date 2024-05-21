@@ -170,8 +170,9 @@
     justify-content: space-around;
     border: 1px solid;
     height: 550px;
-    width: 55%;
+    max-width: 350px;
     border-radius: 10%;
+    border: 3px solid;
     background-color: rgb(209, 209, 209);
 }
 
@@ -189,7 +190,7 @@
 
 .select{
     height: 30px;
-    width: 200px;
+    width: 170px;
     text-align: center;
     border-radius: 5%;
     border: solid black;
@@ -285,4 +286,11 @@
 .footer p{
     font-size: 13px;
 }
-  
+
+#home-footer{
+    background: none;
+}
+
+#home-footer p{
+    background: none;
+}
