@@ -162,14 +162,22 @@
 }
 
 /*Formulario*/
-
-#form-container{
-    width: 85%;
+#form-wrapper{
+    width: 100%;
     margin: 0 auto;
-    height: 80vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+   
+}
+#form-container{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    margin: 10px;
+    padding: 20px;
 }
 
 #form-container h1 {
@@ -259,6 +267,13 @@
     color: black;
 }
 
+.create-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style: none;
+}
 /*home*/
 
 
@@ -366,4 +381,5 @@ font-size: 24px;
     color: white;
     text-decoration: none;
 }
+
 
