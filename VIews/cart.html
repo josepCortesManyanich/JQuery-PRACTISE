@@ -12,13 +12,13 @@
 
 </head>
 <body>
+   
     <header class="header">
-
         <nav class="navbar">
             <ul>
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="/VIews/products.html">Productos</a></li>
-                <li><a href="/VIews/create-products.html">Crear</a></li>
+                <li><a href="/VIews/create-products.html">Crear </a></li>
                 <li>
                     <a href="/VIews/cart.html">
                         <i class="fas fa-shopping-cart"></i>
@@ -49,10 +49,74 @@
     // Aquí recuperamos el contenido del carrito del localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let cartList = $('.cart-list');
-    cart.forEach(function(productName) {
-        cartList.append('<li>'+ productName + '</li>');
+    cart.forEach(function(item) {
+        let listItem = `
+            <li style= "display: flex;
+                margin: 0 auto;
+                margin-bottom: 10px;" >
+            
+                    <div style ="  display: flex;
+                                max-width: 350px;
+                                height: 470px;
+                                flex-wrap: wrap;
+                                align-items: center;
+                                justify-content: center;
+                                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+                                border: 2px solid white;
+                                background-color: rgb(209, 209, 209);">
+                        
+                            <h4 style= "text-align: center;
+                                        letter-spacing: 0.5px;
+                                        font-weight: bold;
+                                        text-transform: uppercase;
+                                        background-color:  rgb(209, 209, 209); 
+                                        color: black;" >${item.name}</h4>
+                            <img src="${item.image}"style=" width: 100%;">
+                            <p 
+                                    style="background-color:  rgb(209, 209, 209); ;
+                                    padding-left: 10px;
+                                    color: black;" >
+                                    
+                                    Gramaje${item.size}
+                                    
+                            </p>
+                            <p 
+                                    style="background-color:  rgb(209, 209, 209); ;
+                                    padding-left: 10px;
+                                    color: black;" >
+                                     Precio ${item.price}
+                            </p>
+                            <button class="remove" data-product="${item.name}"> Eliminar del carrito</button>
+
+                            
+                    </div>
+            </li>
+            `;
+        cartList.append(listItem);
     });
+    $('.cart-list').on('click', '.remove', function() {
+    let productId = $(this).closest('li').data('product-id'); // Obtener el identificador único del producto desde el DOM
+
+    // Obtener el array del carrito del localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Encontrar el índice del elemento que se va a eliminar
+    let index = cart.findIndex(item => item.id === productId); // Buscar por identificador único
+
+    // Si se encuentra el elemento en el array
+    if (index !== -1) {
+        // Eliminar el elemento del array
+        cart.splice(index, 1);
+        
+        // Actualizar el localStorage con el nuevo array
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Eliminar el elemento del DOM (opcional)
+        $(this).closest('li').remove();
+    }
 });
+    })
+
     </script>
 
 </body>
