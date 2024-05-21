@@ -26,6 +26,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
     padding: 15px;
     text-transform: uppercase;
 }
@@ -164,6 +165,10 @@
 #form-container{
     width: 85%;
     margin: 0 auto;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 #form-container h1 {
@@ -178,8 +183,8 @@
     align-items: center;
     justify-content: space-around;
     border: 1px solid;
-    height: 550px;
-    max-width: 350px;
+    height: 350px;
+    width: 400px;
     border-radius: 10%;
     border: 3px solid;
     background-color: rgb(209, 209, 209);
@@ -288,8 +293,11 @@
 
 .footer{
     display:flex ;
+    align-items: center;
     justify-content: flex-end;
     margin-left: auto;
+    margin-bottom: auto;
+
 }
 
 .footer p{

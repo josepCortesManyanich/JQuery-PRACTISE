@@ -49,95 +49,93 @@
    
     <script>
       $(function(){
-    // Aquí recuperamos el contenido del carrito del localStorage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let cartList = $('.cart-list');
-    let totalPrice= 0
-    cart.forEach(function(item) {
-        let listItem = `
-            <li style= "display: flex;
-                margin: 0 auto;
-                margin-bottom: 10px;" >
+   
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartList = $('.cart-list');
+            let totalPrice= 0
+            cart.forEach(function(item) {
+                let listItem = `
+                    <li style= "display: flex;
+                        margin: 0 auto;
+                        margin-bottom: 10px;" >
+                    
+                            <div style ="  display: flex;
+                                        max-width: 350px;
+                                        height: 470px;
+                                        flex-wrap: wrap;
+                                        align-items: center;
+                                        justify-content: center;
+                                        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+                                        border: 2px solid white;
+                                        background-color: rgb(209, 209, 209);">
+                                
+                                    <h4 style= "text-align: center;
+                                                letter-spacing: 0.5px;
+                                                font-weight: bold;
+                                                text-transform: uppercase;
+                                                background-color:  rgb(209, 209, 209); 
+                                                color: black;" >${item.name}</h4>
+                                    <img src="${item.image}"style=" width: 100%;">
+                                    <p 
+                                            style="background-color:  rgb(209, 209, 209); ;
+                                            padding-left: 5px;
+                                            color: black;" >
+                                            
+                                            Gramaje ${item.size}
+                                            
+                                    </p>
+                                    <p 
+                                            style="background-color:  rgb(209, 209, 209); ;
+                                            padding-left: 5px;
+                                            color: black;" >
+                                                Precio ${item.price} €
+                                    </p>
+                                    <button class="remove" data-product="${item.name}" 
+                                            style= " margin-left: auto;
+                                            margin-right: 5px;
+                                            padding: 2px;
+                                            height: 40px;
+                                            align-items: center;
+                                            cursor: pointer;
+                                            ;"> 
+                                            Eliminar del carrito
+                                    </button>
+
+                                    
+                            </div>
+                    </li>
+                    `;
+                cartList.append(listItem);
+                totalPrice += parseFloat(item.price);
+            });
+            $('#total-price').text(totalPrice.toFixed(2));
+
+            $('.cart-list').on('click', '.remove', function() {
+
+            let productId = $(this).closest('li').data('product-id'); 
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+
+            let index = cart.findIndex(item => item.id === productId); 
+
             
-                    <div style ="  display: flex;
-                                max-width: 350px;
-                                height: 470px;
-                                flex-wrap: wrap;
-                                align-items: center;
-                                justify-content: center;
-                                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-                                border: 2px solid white;
-                                background-color: rgb(209, 209, 209);">
-                        
-                            <h4 style= "text-align: center;
-                                        letter-spacing: 0.5px;
-                                        font-weight: bold;
-                                        text-transform: uppercase;
-                                        background-color:  rgb(209, 209, 209); 
-                                        color: black;" >${item.name}</h4>
-                            <img src="${item.image}"style=" width: 100%;">
-                            <p 
-                                    style="background-color:  rgb(209, 209, 209); ;
-                                    padding-left: 5px;
-                                    color: black;" >
-                                    
-                                    Gramaje ${item.size}
-                                    
-                            </p>
-                            <p 
-                                    style="background-color:  rgb(209, 209, 209); ;
-                                    padding-left: 5px;
-                                    color: black;" >
-                                     Precio ${item.price} €
-                            </p>
-                            <button class="remove" data-product="${item.name}" 
-                                    style= " margin-left: auto;
-                                    margin-right: 5px;
-                                    padding: 2px;
-                                    height: 40px;
-                                    align-items: center;
-                                    cursor: pointer;
-                                    ;"> 
-                                    Eliminar del carrito
-                            </button>
+            if (index !== -1) {
+                
+                let productPrice = parseFloat(cart[index].price);
+                let totalPrice = parseFloat($('#total-price').text());
+                totalPrice -= productPrice;
+                $('#total-price').text(totalPrice.toFixed(2));
 
-                            
-                    </div>
-            </li>
-            `;
-        cartList.append(listItem);
-        totalPrice += parseFloat(item.price);
-    });
-    $('#total-price').text(totalPrice.toFixed(2));
+                cart.splice(index, 1);
 
-    $('.cart-list').on('click', '.remove', function() {
-    let productId = $(this).closest('li').data('product-id'); // Obtener el identificador único del producto desde el DOM
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
 
-    // Obtener el array del carrito del localStorage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Encontrar el índice del elemento que se va a eliminar
-    let index = cart.findIndex(item => item.id === productId); // Buscar por identificador único
-
-    // Si se encuentra el elemento en el array
-    if (index !== -1) {
-        // Restar el precio del producto eliminado del precio total
-        let productPrice = parseFloat(cart[index].price);
-        let totalPrice = parseFloat($('#total-price').text());
-        totalPrice -= productPrice;
-        $('#total-price').text(totalPrice.toFixed(2));
-
-        // Eliminar el elemento del array
-        cart.splice(index, 1);
-
-        // Actualizar el localStorage con el nuevo array
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        // Eliminar el elemento del DOM
-        $(this).closest('li').remove();
-    }
-});
-    })
+                $(this).closest('li').remove();
+            }
+            });
+        })
 
     </script>
 
