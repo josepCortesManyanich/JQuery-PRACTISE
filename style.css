@@ -29,6 +29,7 @@
     flex-wrap: wrap;
     padding: 15px;
     text-transform: uppercase;
+    flex-grow: 1;
 }
 
 .navbar ul li{

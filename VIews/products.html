@@ -160,21 +160,20 @@
         </footer>
 
         <script>
-           $(function(){
-                $('#Productos').on('click','.add-to', function(){
-                    let productName = $(this).closest('.product-card').data('name');
-                    let productImage =$(this). closest('.product-card').data('image')
+            $(function(){
+                $('#Productos').on('click','add-to', function(){
+                    let productName =$(this).closest('.product-card').data('name'); 
+                    let productImage =$(this). closest('.product-card').data('image');
                     let productSize = $(this).closest('.product-card').data('size');
                     let productPrice =parseFloat($(this).closest('.product-card').data('price')); 
-                            
-                    console.log('Producto a añadir:', productName, productImage); // Verifica en la consola
-                    // Guardar el producto en el localStorage
-                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                    cart.push({name: productName, image: productImage, size:productSize, price:productPrice});
-                    localStorage.setItem('cart', JSON.stringify(cart));
-                });
-            });
+
+                    let cart =JSON.parse(localStorage.getItem('cart')) ||[];
+                    cart.push({name:productName, image: productImage, size:productSize, price:productPrice})
+                    localStorage.setItem('cart',JSON.stringify(cart))
+                })
+            })
         </script>
+      
    
        
 

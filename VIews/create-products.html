@@ -32,12 +32,13 @@
         </nav>
         
     </header>
+    <div>
         <div id="form-container">
             <h1>CREA TU PRODUCTO</h1>
 
             <form id="form">
-                <label class="label" for="Producto">Producto</label>
-                <select  class="select" >
+                <label class="label" for="product-select">Producto</label>
+                <select id="product-select"  class="select" >
                     <option class="option" value="Proteina Isolada">Proteina Isolada</option>
                     <option class="option" value="Creatina">Creatina</option>
                     <option class="option" value="L-Carnitina">L-carnitina</option>
@@ -46,20 +47,16 @@
                
 
                 <div class="input-container">
-                    <label class="label" for="Gramaje">Gramaje</label>
-                    <input class="input-form1" type="number" placeholder="€">
+                    <label class="label" for="size">Gramaje</label>
+                    <input id="size"   class="input-form1" type="number" placeholder="€">
                 </div>
                 
-                    <label class="label"  for="Imagen">Imagen</label>
-                    <input class="input-form" type="file">
-              
-                   
-                
-                
-               
+                    <label class="label"  for="image">Imagen</label>
+                    <input id="image"  class="input-form" type="file">
+
                 <div class="input-container">
-                    <label class="label"  for="Precio">Precio:</label>
-                    <input class="input-form1" type="number" placeholder="€">
+                    <label class="label"  for="price">Precio:</label>
+                    <input id='price'class="input-form1" type="number" placeholder="€">
                 </div>
                 
             </form>
@@ -71,14 +68,108 @@
 
         </div>
 
+        <div id="create-cart">
+            <h3>En preparación!</h3>
+            <ul class="create-list">
 
-     
+            </ul>
+        </div>
 
-       
+    </div>
+             
   
-        <footer class="footer">
-            <p> JQuery Practise. Josep Cortes Mañanich 2024</p>
-        </footer>
+    <footer class="footer">
+         <p> JQuery Practise. Josep Cortes Mañanich 2024</p>
+    </footer>
+
+    <script>
+        $(function() {
+             $('#form-container').on('click', '.btn-create', function(e) {
+                 e.preventDefault();
+
+                 let productName = $('#product-select').val();
+                 let productSize = $('#size').val();
+                 let productImage = $('#image')[0].files[0];
+                 let productPrice = parseFloat($('#price').val());
+
+
+                 if (!productName || !productSize || !productImage || !productPrice) {
+                     alert('RELLENA TODOS LOS CAMPOS PORFAVOR');
+                     return; 
+                 }
+
+                 let reader = new FileReader();
+                 reader.onload = function(e) {
+                     let productImageUrl = e.target.result;
+                     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                     cart.push({
+                         name: productName,
+                         image: productImageUrl,  
+                         size: productSize,
+                         price: productPrice
+                     });
+
+                     localStorage.setItem('cart', JSON.stringify(cart));
+
+                     alert('Producto añadido');
+                     $('#form')[0].reset();
+
+                     let createList = $('.create-list');
+                     createList.empty(); 
+
+                     cart.forEach(function(item) {
+                         let listItem = `
+                             <li style="display: flex; margin: 0 auto; margin-bottom: 10px;">
+                                 <div style="display: flex; max-width: 350px; height: 470px; flex-wrap: wrap; align-items: center; justify-content: center; box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); border: 2px solid white; background-color: rgb(209, 209, 209);">
+                                     <h4 
+                                     style=
+                                     "text-align: center; 
+                                     letter-spacing: 0.5px; 
+                                     font-weight: bold; 
+                                     text-transform: uppercase; 
+                                     background-color: rgb(209, 209, 209); 
+                                     color: black;">
+                                     ${item.name}
+                                     </h4>
+                                     
+                                     <img src="${item.image}" style="width: 100%;">
+                                     
+                                     <button class="remove" data-product="${item.name}" 
+                                     style="
+                                     padding: 2px; 
+                                     height: 40px; 
+                                     align-items: center; 
+                                     cursor: pointer;">
+                                     Eliminar del carrito
+                                     </button>
+                                 </div>
+                             </li>`;
+                         createList.append(listItem);
+                     });
+                 };
+
+             
+                 reader.readAsDataURL(productImage);
+
+         
+                 $('.create-list').on('click', '.remove', function() {
+                     let productName = $(this).data('product');
+                     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                     let index = cart.findIndex(item => item.name === productName);
+
+                     if (index !== -1) {
+                         cart.splice(index, 1);
+                         localStorage.setItem('cart', JSON.stringify(cart));
+                         $(this).closest('li').remove();
+                     }
+                 });
+             });
+         });
+       
+
+     </script>
     
 
 </body>
