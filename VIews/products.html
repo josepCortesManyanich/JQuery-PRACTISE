@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -22,8 +24,7 @@
                     <li><a href="/VIews/create-products.html">Crear </a></li>
                     <li>
                         <a href="/VIews/cart.html">
-                         
-                                <i class="fas fa-shopping-cart"></i>
+                            <i class="fas fa-shopping-cart"></i>
                         </a>
                     </li>
     
@@ -37,52 +38,52 @@
 
             <ul class="list">
                 <li class="item">
-                    <div class="product-card">
+                    <div class="product-card" data-name="Proteina Isolada">
                         <h4>Proteina Isolada </h4>
                         <img src="https://res.cloudinary.com/josepcortes/image/upload/v1716241600/proteina_odlwo6.webp" alt="">
                         <p>Gramaje: 2kg</p>
                         <p>Precio: 120€</p>
-                        <button>Añadir al carrito</button>
+                        <button class="add-to">Añadir al carrito</button>
                     </div>
                 </li>
 
                 <li class="item">
-                    <div class="product-card">
+                    <div class="product-card" data-name="Proteina Isolada">
                         <h4>Proteina Isolada </h4>
                         <img src="https://res.cloudinary.com/josepcortes/image/upload/v1716241600/proteina_odlwo6.webp" alt="">
                         <p>Gramaje: 2kg</p>
                         <p>Precio: 120€</p>
-                        <button>Añadir al carrito</button>
+                        <button class="add-to">Añadir al carrito</button>
                     </div>
                 </li>
 
                 <li class="item">
-                    <div class="product-card">
+                    <div class="product-card" data-name="Creatina">
                         <h4>Creatina </h4>
                         <img src="https://res.cloudinary.com/josepcortes/image/upload/v1716241595/creatina_pei4tf.webp" alt="">
                         <p>Gramaje: 0.5kg</p>
                         <p>Precio: 40€</p>
-                        <button>Añadir al carrito</button>
+                        <button class="add-to">Añadir al carrito</button>
                     </div>
                 </li>
 
                 <li class="item">
-                    <div class="product-card">
+                    <div class="product-card" data-name="L-Carnitina">
                         <h4>L-Carnitina</h4>
                         <img src="https://res.cloudinary.com/josepcortes/image/upload/v1716241757/317_fq53ih.webp" alt="">
                         <p>Gramaje: 0.2kg</p>
                         <p>Precio: 20€</p>
-                        <button>Añadir al carrito</button>
+                        <button class="add-to">Añadir al carrito</button>
                     </div>   
                 </li>
 
                 <li class="item">  
-                    <div class="product-card">
+                    <div class="product-card" data-name = "CASEINA">
                         <h4>CASEINA </h4>
                         <img src="https://res.cloudinary.com/josepcortes/image/upload/v1716241515/caseina_m5ukau.webp" alt="">
                         <p>Gramaje: 1kg</p>
                         <p>Precio: 80€</p>
-                        <button>Añadir al carrito</button>
+                        <button class="add-to">Añadir al carrito</button>
                     </div>
                 </li>
 
@@ -92,7 +93,7 @@
                         <img src="https://res.cloudinary.com/josepcortes/image/upload/v1716241749/73_8d021437-0dcc-41d4-af18-a3bd7eeb34f7_zlxaif.webp" alt="">
                         <p>Gramaje: 1kg</p>
                         <p>Precio: 120€</p>
-                        <button>Añadir al carrito</button>
+                        <button class="add-to">Añadir al carrito</button>
                     </div>
                 </li>
 
@@ -102,7 +103,7 @@
                         <img src="https://res.cloudinary.com/josepcortes/image/upload/v1716241589/carnitina_pccyc9.webp" alt="">
                         <p>Gramaje: 1kg</p>
                         <p>Precio: 40€</p>
-                        <button>Añadir al carrito</button>
+                        <button class="add-to">Añadir al carrito</button>
                     </div>
                 </li>
 
@@ -112,7 +113,7 @@
                         <img src="https://res.cloudinary.com/josepcortes/image/upload/v1716241515/caseina_m5ukau.webp" alt="">
                         <p>Gramaje: 1kg</p>
                         <p>Precio: 80€</p>
-                        <button>Añadir al carrito</button>
+                        <button class="add-to">Añadir al carrito</button>
                     </div>
                 </li>
 
@@ -123,7 +124,7 @@
                         <img src="https://res.cloudinary.com/josepcortes/image/upload/v1716250705/296_1d321995-abd5-458e-b93b-e9be02e998b2_plewb9.webp" alt="">
                         <p>Gramaje: 0.5kg</p>
                         <p>Precio: 30€</p>
-                        <button>Añadir al carrito</button>
+                        <button class="add-to">Añadir al carrito</button>
                     </div>
                 </li>
 
@@ -134,7 +135,7 @@
                         <img src="https://res.cloudinary.com/josepcortes/image/upload/v1716250793/99_8dc9fdab-7194-48f7-a7a8-70847fe7e323_lqemgf.webp" alt="">
                         <p>Gramaje: 1kg</p>
                         <p>Precio: 80€</p>
-                        <button>Añadir al carrito</button>
+                        <button class="add-to">Añadir al carrito</button>
                     </div>
                 </li>
 
@@ -144,16 +145,31 @@
                         <img src="https://res.cloudinary.com/josepcortes/image/upload/v1716250699/292_59dcc387-7f17-4458-afc7-01eb8d665e88_fp8czt.webp" alt="">
                         <p>Gramaje: 1kg</p>
                         <p>Precio: 80€</p>
-                        <button>Añadir al carrito</button>
+                        <button class="add-to">Añadir al carrito</button>
                     </div>
                 </li>
 
             </ul>
         </div>
 
+
+
         <footer class="footer">
             <p> JQuery Practise. Josep Cortes Mañanich 2024</p>
         </footer>
+
+        <script>
+           $(function(){
+    $('#Productos').on('click','.add-to', function(){
+        let productName = $(this).closest('.product-card').data('name');
+        console.log('Producto a añadir:', productName);
+        // Guardar el producto en el localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(productName);
+        localStorage.setItem('cart', JSON.stringify(cart));
+    });
+});
+        </script>
    
        
 
