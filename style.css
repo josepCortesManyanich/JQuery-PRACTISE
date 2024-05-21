@@ -20,6 +20,7 @@
     
 }
 
+
 .navbar ul{
     list-style: none;
     display: flex;
@@ -72,7 +73,15 @@
     width: 0;
 
 }
-
+ i{
+    
+    right: 50px;
+	top: 50px;
+	width: 30px;
+	cursor: pointer;
+    font-size: 30px; 
+    color: #cec8c8;
+}
 
 
 /*Products*/
@@ -294,3 +303,5 @@
 #home-footer p{
     background: none;
 }
+
+
