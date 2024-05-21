@@ -164,8 +164,8 @@
                     let productName = $(this).closest('.product-card').data('name');
                     let productImage =$(this). closest('.product-card').data('image')
                     let productSize = $(this).closest('.product-card').data('size');
-                    let productPrice =$(this).closest('.product-card').data('price');
-
+                    let productPrice =parseFloat($(this).closest('.product-card').data('price')); 
+                            
                     console.log('Producto a añadir:', productName, productImage); // Verifica en la consola
                     // Guardar el producto en el localStorage
                     let cart = JSON.parse(localStorage.getItem('cart')) || [];

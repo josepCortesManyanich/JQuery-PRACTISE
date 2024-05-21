@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 
 </head>
 <body>
@@ -34,7 +36,7 @@
         <ul class="cart-list">
 
         </ul>
-        <p>Total<span></span>€</p>
+        <p id="price">Total= <span id="total-price"></span>€</p>
     </div>
 
 
@@ -49,6 +51,7 @@
     // Aquí recuperamos el contenido del carrito del localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let cartList = $('.cart-list');
+    let totalPrice= 0
     cart.forEach(function(item) {
         let listItem = `
             <li style= "display: flex;
@@ -74,26 +77,38 @@
                             <img src="${item.image}"style=" width: 100%;">
                             <p 
                                     style="background-color:  rgb(209, 209, 209); ;
-                                    padding-left: 10px;
+                                    padding-left: 5px;
                                     color: black;" >
                                     
-                                    Gramaje${item.size}
+                                    Gramaje ${item.size}
                                     
                             </p>
                             <p 
                                     style="background-color:  rgb(209, 209, 209); ;
-                                    padding-left: 10px;
+                                    padding-left: 5px;
                                     color: black;" >
-                                     Precio ${item.price}
+                                     Precio ${item.price} €
                             </p>
-                            <button class="remove" data-product="${item.name}"> Eliminar del carrito</button>
+                            <button class="remove" data-product="${item.name}" 
+                                    style= " margin-left: auto;
+                                    margin-right: 5px;
+                                    padding: 2px;
+                                    height: 40px;
+                                    align-items: center;
+                                    cursor: pointer;
+                                    ;"> 
+                                    Eliminar del carrito
+                            </button>
 
                             
                     </div>
             </li>
             `;
         cartList.append(listItem);
+        totalPrice += parseFloat(item.price);
     });
+    $('#total-price').text(totalPrice.toFixed(2));
+
     $('.cart-list').on('click', '.remove', function() {
     let productId = $(this).closest('li').data('product-id'); // Obtener el identificador único del producto desde el DOM
 
@@ -105,13 +120,19 @@
 
     // Si se encuentra el elemento en el array
     if (index !== -1) {
+        // Restar el precio del producto eliminado del precio total
+        let productPrice = parseFloat(cart[index].price);
+        let totalPrice = parseFloat($('#total-price').text());
+        totalPrice -= productPrice;
+        $('#total-price').text(totalPrice.toFixed(2));
+
         // Eliminar el elemento del array
         cart.splice(index, 1);
-        
+
         // Actualizar el localStorage con el nuevo array
         localStorage.setItem('cart', JSON.stringify(cart));
-        
-        // Eliminar el elemento del DOM (opcional)
+
+        // Eliminar el elemento del DOM
         $(this).closest('li').remove();
     }
 });
